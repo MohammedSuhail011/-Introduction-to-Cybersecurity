@@ -1,0 +1,35 @@
+In the world of cybersecurity, understanding the attacker's mindset and the path they follow is vital for effectively constructing defense strategies. The Cyber Kill Chain is one of the most fundamental frameworks that models this process and guides defenders.
+
+What is the Cyber Kill Chain?
+The Cyber Kill Chain was developed in 2011 by Lockheed Martin's CSIRT (Computer Security Incident Response Team). It is an adaptation of the military "targeting chain" concept to cybersecurity. This model divides the anatomy of Advanced Persistent Threats (APTs) and complex cyber attacks into seven sequential stages.
+
+The basic premise of the model is this: For an attacker to succeed, they must successfully complete all stages in this chain. Conversely, for defenders, breaking the chain at any stage is sufficient to stop the attack.
+The Seven Stages of the Cyber Kill Chain
+
+The model defines an attack in the following seven steps:
+
+Reconnaissance: The stage where the attacker gathers information about the target.
+Weaponization: The stage where malicious software suitable for the identified vulnerabilities is prepared.
+Delivery: The stage where the prepared malicious content is sent to the target.
+Exploitation: The stage where the malware triggers the vulnerability on the target system.
+Installation: The stage where the attacker places a backdoor to maintain persistence on the system.
+Command and Control (C2): The stage where the compromised system is managed remotely.
+Actions on Objectives: The stage where the actual goal, such as data theft, encryption, or sabotage, is carried out.
+Intelligence Driven Defense
+The Cyber Kill Chain is not just an analysis tool but also the foundation of the Intelligence Driven Defense model. While traditional defense approaches are built on "incident response," this model aims to be proactive.
+
+Attackers often reuse their tools or infrastructure. Indicators (IP addresses, file hashes, domain names) obtained from the analysis of an attack chain can be used to detect and prevent future attacks at earlier stages.
+The Defender's Advantage
+The concept of the attack chain provides an advantage to the defender in asymmetric cyber warfare:
+
+Attacker: Must be "correct" and undetected at every stage to succeed.
+Defender: Only needs to break the chain in one place to stop the attack.
+For example, even if the attacker has prepared a perfect exploit (Exploitation), if they cannot deliver this exploit to the target (blocked at Delivery), the attack fails.
+
+Why is the Cyber Kill Chain Criticized?
+Although the model is an industry standard, it has some limitations, which is why it is often used alongside other frameworks like MITRE ATT&CK in modern SOC operations.
+
+Perimeter Focus: The model focuses more on attacks trying to penetrate from the outside. It does not fully cover Insider Threats.
+Linearity: Real attacks may not always proceed linearly (from 1 to 7).
+Old Threat Model: In modern, cloud-based, and identity-focused attacks, some stages (e.g., "Installation") might be skipped or take a different form.
+Nevertheless, the Cyber Kill Chain is the most fundamental methodology that cybersecurity analysts, SOC employees, and penetration testers (Pentesters) must know. We will examine these stages with technical details in the following sections.
