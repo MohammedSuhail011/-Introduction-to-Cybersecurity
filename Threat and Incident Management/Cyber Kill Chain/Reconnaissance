@@ -1,0 +1,98 @@
+The first stage of the Cyber Kill Chain, Reconnaissance, is where the attacker identifies the target, gathers information about the target, and plans the attack strategy. This stage forms the foundation of the entire attack process; the more accurate information the attacker collects, the higher the chance of success.
+The reconnaissance stage is technically divided into two main categories: Passive Reconnaissance and Active Reconnaissance.
+
+1. Passive Reconnaissance
+Passive reconnaissance is the method where the attacker gathers information without directly interacting with the target systems. No packets are sent directly to the target's servers, so it is very difficult to be detected by Firewalls or IDS/IPS systems. Information is usually obtained from publicly available sources (OSINT - Open Source Intelligence).
+
+Objectives
+
+Employee email addresses and names.
+Technologies used (from job postings or LinkedIn profiles).
+Subdomains.
+DNS records.
+IP address blocks.
+Tools and Techniques Used
+
+Search Engines and Google Dorking
+Attackers can use search engines like Google to find files exposing sensitive information about the target.
+Example Google Dork query (searches for PDF files on target-site.com):
+
+Google Dork Example
+site:target-site.com filetype:pdf
+TheHarvester
+
+theHarvester is a popular OSINT tool used to gather email addresses, subdomains, hostnames, employee names, open ports, and banners.
+Usage in the terminal is as follows:
+
+theHarvester Usage
+theHarvester -d target-site.com -l 500 -b google
+This command scans the first 500 results on Google for the target-site.com domain.
+
+Example Output:
+theHarvester Output
+[*] Target: target-site.com
+[*] Searching Google...
+[*] Search results:
+---------------------
+Emails found:
+admin@target-site.com
+info@target-site.com
+john.doe@target-site.com
+
+Hosts found:
+mail.target-site.com: 192.168.1.10
+vpn.target-site.com: 192.168.1.11
+dev.target-site.com: 192.168.1.12
+Shodan
+
+Shodan is a search engine that scans devices connected to the internet (webcams, servers, IoT devices, etc.). Attackers can passively obtain open ports belonging to the target organization, vulnerable services, and server banner information via Shodan.
+Example Shodan CLI query (lists IPs belonging to a specific organization):
+
+Shodan CLI
+shodan search org:"Target Organization"
+2. Active Reconnaissance
+Active reconnaissance is the method where the attacker gathers information by directly communicating with the target systems. In this stage, packets are sent to the target system, and the responses are analyzed. This process leaves traces in the target system's logs and carries the risk of being detected by security devices.
+
+Objectives
+Detection of open ports.
+Determination of service versions (Banner Grabbing).
+Operating system detection (OS Fingerprinting).
+Mapping network topology.
+Tools and Techniques Used
+
+Nmap (Network Mapper)
+Nmap is the most popular tool used for network scanning and vulnerability detection.
+
+Basic Port Scan:
+Nmap SYN Scan
+nmap -sS -p- 192.168.1.10
+-sS: SYN Scan (Half-open scan). Does not complete the TCP handshake, so it is stealthier.
+-p-: Scans all 65535 ports.
+
+Version and OS Detection:
+
+Nmap Version Detection
+nmap -sV -O 192.168.1.10
+-sV: Detects versions of services running on open ports.
+-O: Attempts to guess the operating system.
+
+Example Output:
+Nmap Output
+PORT     STATE SERVICE VERSION
+21/tcp   open  ftp     vsftpd 2.3.4
+80/tcp   open  http    Apache httpd 2.4.41 ((Ubuntu))
+443/tcp  open  https   Apache httpd 2.4.41 ((Ubuntu))
+Running: Linux 4.X
+The vsftpd 2.3.4 information in this output is critical for the attacker because this version has a known backdoor vulnerability (Backdoor Command Execution).
+Web Directory Scanning (Gobuster / Dirb)
+Used to find hidden directories and files on web servers.
+
+Gobuster Usage
+gobuster dir -u http://target-site.com -w /usr/share/wordlists/dirb/common.txt
+Defense in Reconnaissance Stage
+It is difficult to completely prevent the reconnaissance stage because passive reconnaissance is usually done from sources outside the organization's control. However, the following measures can be taken:
+
+Preventing Information Leakage: Excessive technical details (firewall brand used, server version, etc.) should not be shared on corporate websites, job postings, and social media.
+Whois Privacy: Hiding domain registration information.
+Error Messages: Web applications should be prevented from returning detailed error messages (stack traces).
+Log Monitoring: Active scanning attempts (Nmap scans) should be detected from Firewall and IDS/IPS logs, and IP addresses should be blocked.
