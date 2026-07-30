@@ -2,7 +2,7 @@ After sufficient information (operating system used, open ports, vulnerable appl
 In short: Exploit + Payload = Weapon
 This stage usually takes place in the attacker's own local environment, meaning there is no contact with the target system yet.
 
-Basic Concepts
+ Concepts
 Exploit
 Code that triggers a vulnerability (software bug, configuration flaw, etc.) in the target system, causing the system to behave unexpectedly.
 Payload
