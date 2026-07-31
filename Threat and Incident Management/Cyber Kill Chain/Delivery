@@ -55,8 +55,8 @@ This is one of the stages where defenders have the greatest chance to prevent th
 Analyzing attachments of incoming emails in a Sandbox environment.
 Enforcing SPF, DKIM, DMARC checks.
 Link analysis and URL Rewriting.
-2. Web Proxy and URL Filtering
 
+2. Web Proxy and URL Filtering
 Blocking access to known malicious domains and IP addresses.
 Blocking uncategorized or "newly registered" domains.
 
