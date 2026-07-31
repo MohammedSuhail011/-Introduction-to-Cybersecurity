@@ -1,0 +1,68 @@
+The Delivery stage is the critical step where the malicious content (weaponized payload) prepared in the Weaponization stage is delivered to the target. The attacker's goal is to get the prepared malware onto the victim's system or to trick the victim into executing it.
+
+This stage is the first point of contact where the attack transitions from the virtual world (attacker's computer) to the target's world (victim's network/computer).
+
+Delivery Methods (Vectors)
+1. Delivery via Email (Phishing)
+
+The most common delivery method. Attackers try to deceive the victim by preparing emails that appear to come from a legitimate institution.
+
+Malicious Attachments: Malicious files appearing as invoices, receipts, CVs (PDF, Word, ZIP, EXE).
+Malicious Links: Links directing the user to a fake login page (Credential Harvesting) or a site where malware automatically downloads.
+Email Header Analysis
+
+Header information is examined to understand whether an email is fake.
+
+SPF (Sender Policy Framework): Checks if the sending IP address is authorized to send email for the domain name.
+DKIM (DomainKeys Identified Mail): Verifies with a digital signature that the content of the email has not been altered in transit.
+DMARC: Determines what to do with the email (quarantine, reject, accept) based on SPF and DKIM results.
+Example Suspicious Header Analysis:
+
+Email Header Example
+Return-Path: <attacker@bad-domain.com>
+Received: from mail.bad-domain.com (10.0.0.5)
+From: "CEO Support" <admin@legit-company.com>
+Subject: URGENT: Invoice Payment Overdue
+X-Mailer: PHP/7.4
+Analysis: Although the From section says legitimate company name, Return-Path shows a different domain. Also, the X-Mailer: PHP header indicates that this email was sent by a PHP script (likely a mass mailing tool) rather than an Outlook or Gmail client.
+
+2. Delivery via Web (Drive-by Download / Watering Hole)
+
+Drive-by Download: Malware downloading to the user's computer without their knowledge (or via a misleading pop-up) when visiting a vulnerable website.
+Watering Hole: The attacker hacks a legitimate website frequently visited by the target audience (e.g., industry news sites, local forums) and places malicious code on the site. The target audience is attacked when they visit this site.
+3. USB / External Media (Baiting)
+
+Attackers leave USB drives labeled "Salaries", "Confidential" etc., in the company parking lot or lobby. When a curious employee plugs the USB into their computer, the malware runs automatically (USB Rubber Ducky or Autorun).
+
+USB Rubber Ducky:
+It is a USB device that acts like a keyboard. As soon as it is plugged into the computer, it executes malicious code in seconds by pressing pre-programmed keyboard keys (e.g., Windows + R, cmd, powershell payload) at lightning speed.
+
+
+
+Delivery Stage Example Scenario
+The attacker targets the Human Resources (HR) department of a company.
+
+Preparation: Prepares a Word file named cv-john-doe.doc containing a malicious macro.
+Delivery: Sends an email with the subject "Job Application" to the HR manager from applicant@freemail.com.
+Content: "Hello, my CV for your open position is attached. Regards."
+If the HR manager opens this email and downloads the attached file, the "Delivery" stage has been successful.
+
+Detection and Defense in Delivery Stage
+This is one of the stages where defenders have the greatest chance to prevent the attack.
+
+1. Email Security Gateways
+
+Analyzing attachments of incoming emails in a Sandbox environment.
+Enforcing SPF, DKIM, DMARC checks.
+Link analysis and URL Rewriting.
+2. Web Proxy and URL Filtering
+
+Blocking access to known malicious domains and IP addresses.
+Blocking uncategorized or "newly registered" domains.
+3. User Awareness Training
+
+Teaching employees how to recognize suspicious emails and not to plug in USBs of unknown origin.
+Conducting regular phishing simulations.
+4. USB Restrictions
+
+Disabling data transfer on USB ports of corporate computers or allowing only approved devices.
