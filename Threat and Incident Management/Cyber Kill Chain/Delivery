@@ -3,6 +3,7 @@ The Delivery stage is the critical step where the malicious content (weaponized 
 This stage is the first point of contact where the attack transitions from the virtual world (attacker's computer) to the target's world (victim's network/computer).
 
 Delivery Methods (Vectors)
+
 1. Delivery via Email (Phishing)
 
 The most common delivery method. Attackers try to deceive the victim by preparing emails that appear to come from a legitimate institution.
@@ -10,7 +11,6 @@ The most common delivery method. Attackers try to deceive the victim by preparin
 Malicious Attachments: Malicious files appearing as invoices, receipts, CVs (PDF, Word, ZIP, EXE).
 Malicious Links: Links directing the user to a fake login page (Credential Harvesting) or a site where malware automatically downloads.
 Email Header Analysis
-
 Header information is examined to understand whether an email is fake.
 
 SPF (Sender Policy Framework): Checks if the sending IP address is authorized to send email for the domain name.
