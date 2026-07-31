@@ -27,7 +27,6 @@ X-Mailer: PHP/7.4
 Analysis: Although the From section says legitimate company name, Return-Path shows a different domain. Also, the X-Mailer: PHP header indicates that this email was sent by a PHP script (likely a mass mailing tool) rather than an Outlook or Gmail client.
 
 2. Delivery via Web (Drive-by Download / Watering Hole)
-
 Drive-by Download: Malware downloading to the user's computer without their knowledge (or via a misleading pop-up) when visiting a vulnerable website.
 Watering Hole: The attacker hacks a legitimate website frequently visited by the target audience (e.g., industry news sites, local forums) and places malicious code on the site. The target audience is attacked when they visit this site.
 
@@ -36,7 +35,6 @@ Attackers leave USB drives labeled "Salaries", "Confidential" etc., in the compa
 
 USB Rubber Ducky:
 It is a USB device that acts like a keyboard. As soon as it is plugged into the computer, it executes malicious code in seconds by pressing pre-programmed keyboard keys (e.g., Windows + R, cmd, powershell payload) at lightning speed.
-
 
 
 Delivery Stage Example Scenario
