@@ -30,8 +30,8 @@ Analysis: Although the From section says legitimate company name, Return-Path sh
 
 Drive-by Download: Malware downloading to the user's computer without their knowledge (or via a misleading pop-up) when visiting a vulnerable website.
 Watering Hole: The attacker hacks a legitimate website frequently visited by the target audience (e.g., industry news sites, local forums) and places malicious code on the site. The target audience is attacked when they visit this site.
-3. USB / External Media (Baiting)
 
+3. USB / External Media (Baiting)
 Attackers leave USB drives labeled "Salaries", "Confidential" etc., in the company parking lot or lobby. When a curious employee plugs the USB into their computer, the malware runs automatically (USB Rubber Ducky or Autorun).
 
 USB Rubber Ducky:
