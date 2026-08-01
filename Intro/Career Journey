@@ -21,6 +21,7 @@ Teams
 Cybersecurity is a field with many sub-disciplines. The teams listed below help organizations counter cyber threats and ensure the organization's security. Although each team has different roles and responsibilities, they all serve a common goal: strengthening the organization's cybersecurity posture.
 
 Red Team
+
 The Red Team is a group that acts from the attacker's perspective to test an organization's cybersecurity. Their aim is to discover potential vulnerabilities and security gaps, exploit these weaknesses, and realistically test the organization's cyber defense capabilities. Red Team operations include various methods such as attack scenarios, penetration tests, and social engineering tactics. Their work helps understand how well the organization's defenses are prepared for real-world threats.
 
 Blue Team
