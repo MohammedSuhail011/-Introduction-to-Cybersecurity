@@ -30,4 +30,5 @@ Purple Team
 The Purple Team aims to maximize the organization's cybersecurity capabilities by combining the efforts of the Red and Blue teams. Serving as a bridge between the Red and Blue teams, the Purple Team allows both sides to learn from each other and develop their skills. They guide the Blue Team on how to address vulnerabilities discovered by the Red Team and provide feedback to enhance the effectiveness of defense strategies.
 
 Bug Bounty
+
 Bug Bounty is a defense strategy for companies and a revenue source for cybersecurity researchers that has gained significant popularity in recent years. In bug bounty programs, cybersecurity researchers who discover security vulnerabilities within the specified scope and report these vulnerabilities are rewarded with money. Through these programs, organizations become more resilient to cyber attacks while cybersecurity researchers can earn income.
